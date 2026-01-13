@@ -1,10 +1,7 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
-  "/streaks/page": "app/streaks/page.js",
-  "/api/streaks/log/route": "app/api/streaks/log/route.js",
-  "/history/page": "app/history/page.js",
   "/habits/page": "app/habits/page.js",
-  "/api/habits/route": "app/api/habits/route.js",
-  "/api/streaks/route": "app/api/streaks/route.js",
-  "/api/days/route": "app/api/days/route.js"
+  "/analytics/page": "app/analytics/page.js",
+  "/streaks/page": "app/streaks/page.js",
+  "/history/page": "app/history/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }

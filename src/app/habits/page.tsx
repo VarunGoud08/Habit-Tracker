@@ -11,9 +11,20 @@ export default function HabitsPage() {
     const [editingHabit, setEditingHabit] = useState<any>(null);
 
     const fetchHabits = async () => {
-        const res = await fetch('/api/habits');
-        const data = await res.json();
-        setHabits(data);
+        try {
+            const res = await fetch('/api/habits');
+            if (!res.ok) throw new Error('Failed to fetch');
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                setHabits(data);
+            } else {
+                setHabits([]);
+                console.error('Expected array, got:', data);
+            }
+        } catch (e) {
+            console.error(e);
+            setHabits([]);
+        }
     };
 
     useEffect(() => {

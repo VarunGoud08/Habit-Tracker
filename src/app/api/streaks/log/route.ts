@@ -4,8 +4,19 @@ import { startOfDay, subDays, isSameDay, parseISO } from 'date-fns';
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        let body;
+        try {
+            body = await request.json();
+        } catch (e) {
+            return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+        }
+
         const { streakId, date: dateString, status } = body;
+
+        if (!streakId || !dateString || !status) {
+            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+        }
+
         const date = startOfDay(parseISO(dateString));
 
         if (!['FOLLOWED', 'BROKEN', 'SKIP'].includes(status)) {

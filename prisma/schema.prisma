@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Habit {
+  id             String       @id @default(uuid())
+  name           String
+  description    String?
+  category       String       // "GOOD" or "BAD"
+  points         Int          // Points if completed (GOOD) or avoided (BAD)
+  missedPoints   Int          // Points if missed (GOOD) or done (BAD)
+  isActive       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  
+  entries        HabitEntry[]
+}
+
+model DayLog {
+  id        String       @id @default(uuid())
+  date      DateTime     @unique // Stored as midnight UTC
+  totalScore Int         @default(0)
+  note      String?
+  
+  entries   HabitEntry[]
+}
+
+model HabitEntry {
+  id        String   @id @default(uuid())
+  status    String   // "COMPLETED", "MISSED", "SKIPPED"
+  
+  habitId   String
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  
+  dayLogId  String
+  dayLog    DayLog   @relation(fields: [dayLogId], references: [id], onDelete: Cascade)
+
+  @@unique([dayLogId, habitId])
+}
+
+// STREAKS FEATURE
+
+model Streak {
+  id             String       @id @default(uuid())
+  name           String
+  description    String?
+  type           String       // "AVOID" or "MAINTAIN"
+  isActive       Boolean      @default(true)
+  
+  // Metrics (Denormalized for quick access)
+  currentStreak  Int          @default(0)
+  highestStreak  Int          @default(0)
+  lastBrokenDate DateTime?
+  startDate      DateTime     @default(now()) // Start of *current* streak
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  logs           StreakLog[]
+}
+
+model StreakLog {
+  id        String   @id @default(uuid())
+  date      DateTime // Midnight UTC
+  status    String   // "FOLLOWED", "BROKEN", "SKIP" 
+
+  streakId  String
+  streak    Streak   @relation(fields: [streakId], references: [id], onDelete: Cascade)
+
+  @@unique([streakId, date])
+}

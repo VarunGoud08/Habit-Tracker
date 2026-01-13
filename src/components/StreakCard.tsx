@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import { Flame, X, Check, Minus, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { Streak } from '@/lib/types';
+import type { Streak, StreakStatus } from '@/lib/types';
 import confetti from 'canvas-confetti';
 
 interface StreakCardProps {
     streak: Streak;
-    status: 'FOLLOWED' | 'BROKEN' | 'SKIP' | 'UNTRACKED';
-    onUpdateStatus: (id: string, status: string) => void;
+    status: StreakStatus;
+    onUpdateStatus: (id: string, status: StreakStatus) => void;
     compact?: boolean; // For dashboard view
 }
 

@@ -6,6 +6,7 @@ import StreakForm from '@/components/StreakForm';
 import { Plus, Flame } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
+import type { StreakStatus } from '@/lib/types';
 
 export default function StreaksPage() {
     const [streaks, setStreaks] = useState<any[]>([]);
@@ -30,7 +31,7 @@ export default function StreaksPage() {
         fetchData();
     }, []);
 
-    const handleUpdateStatus = async (streakId: string, status: string) => {
+    const handleUpdateStatus = async (streakId: string, status: StreakStatus) => {
         const updatedLogs = [...logs];
         const index = updatedLogs.findIndex(l => l.streakId === streakId);
         if (index >= 0) {

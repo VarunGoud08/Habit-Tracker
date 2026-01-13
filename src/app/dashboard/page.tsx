@@ -5,7 +5,7 @@ import { format, subDays, addDays, isSameDay } from 'date-fns';
 import { ChevronLeft, ChevronRight, Check, X, Minus, Flame } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import type { Habit, DayLog, Streak } from '@/lib/types'; // Updated types import
+import type { Habit, DayLog, Streak, HabitStatus } from '@/lib/types'; // Updated types import
 import StreakCard from '@/components/StreakCard';
 
 export default function Dashboard() {
@@ -45,7 +45,7 @@ export default function Dashboard() {
         fetchData();
     }, [selectedDate]);
 
-    const handleStatusChange = async (habitId: string, status: string) => {
+    const handleStatusChange = async (habitId: string, status: HabitStatus) => {
         // Optimistic Update
         const currentEntries = dayLog?.entries || [];
         const existingIndex = currentEntries.findIndex((e: any) => e.habitId === habitId);

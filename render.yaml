@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: habit-tracker
+    env: node
+    plan: free
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: habit-tracker-db
+          property: connectionString
+      - key: NODE_VERSION
+        value: 18.17.0
+
+databases:
+  - name: habit-tracker-db
+    plan: free
+    databaseName: habit_tracker
+    user: habit_user
+
+version: "1"

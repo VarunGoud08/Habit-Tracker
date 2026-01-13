@@ -1,13 +1,15 @@
 {
+  "/not-found": "app/not-found.js",
   "/api/habits/route": "app/api/habits/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/api/streaks/route": "app/api/streaks/route.js",
   "/api/streaks/log/route": "app/api/streaks/log/route.js",
-  "/streaks/page": "app/streaks/page.js",
-  "/api/days/route": "app/api/days/route.js",
-  "/api/habits/[id]/route": "app/api/habits/[id]/route.js",
-  "/analytics/page": "app/analytics/page.js",
+  "/api/streaks/route": "app/api/streaks/route.js",
   "/settings/page": "app/settings/page.js",
+  "/habits/page": "app/habits/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/api/days/route": "app/api/days/route.js",
+  "/streaks/page": "app/streaks/page.js",
+  "/analytics/page": "app/analytics/page.js",
   "/api/history/route": "app/api/history/route.js",
-  "/habits/page": "app/habits/page.js"
+  "/api/streaks/[id]/route": "app/api/streaks/[id]/route.js",
+  "/history/page": "app/history/page.js"
 }

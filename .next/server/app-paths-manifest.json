@@ -1,13 +1,8 @@
 {
   "/not-found": "app/not-found.js",
-  "/dashboard/page": "app/dashboard/page.js",
   "/settings/page": "app/settings/page.js",
   "/streaks/page": "app/streaks/page.js",
-  "/habits/page": "app/habits/page.js",
-  "/api/habits/route": "app/api/habits/route.js",
-  "/api/days/route": "app/api/days/route.js",
-  "/api/streaks/route": "app/api/streaks/route.js",
-  "/api/streaks/log/route": "app/api/streaks/log/route.js",
-  "/history/page": "app/history/page.js",
-  "/analytics/page": "app/analytics/page.js"
+  "/page": "app/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/habits/page": "app/habits/page.js"
 }
